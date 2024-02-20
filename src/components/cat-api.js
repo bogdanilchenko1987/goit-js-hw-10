@@ -25,7 +25,6 @@ function fetchCatByBreed(breedId) {
     .get(`${BASE_URL}/images/${breedId}`)
     .then(response => {
       if (response.status !== 200) {
-        // refs.error.hidden = false;
         Notify.failure('Oops! Something went wrong! Try reloading the page!', {
           position: 'center-top',
           timeout: 1500,

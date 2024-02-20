@@ -34,25 +34,33 @@ refs.catSelect.addEventListener('input', onSelect);
 
 function onSelect(e) {
   const currentCatId = e.currentTarget.value;
+  if (currentCatId !== 'choose') {
+    refs.loader.hidden = false;
+    refs.catDiv.innerHTML = '';
 
-  refs.loader.hidden = false;
-  refs.catDiv.innerHTML = '';
-
-  setTimeout(() => {
-    fetchCatByBreed(currentCatId)
-      .then(data => {
-        if (currentCatId === data.id) {
-          refs.catDiv.innerHTML = createMarkupDiv(data);
-        }
-        refs.loader.hidden = true;
-      })
-      .catch(err => {
-        console.log(err);
-        refs.loader.hidden = true;
-        Notify.failure('Oops! Something went wrong! Try reloading the page!', {
-          position: 'center-top',
-          timeout: 1500,
+    setTimeout(() => {
+      fetchCatByBreed(currentCatId)
+        .then(data => {
+          if (currentCatId === data.id) {
+            refs.catDiv.innerHTML = createMarkupDiv(data);
+          }
+          refs.loader.hidden = true;
+        })
+        .catch(err => {
+          console.log(err);
+          refs.loader.hidden = true;
+          Notify.failure(
+            'Oops! Something went wrong! Try reloading the page!',
+            {
+              position: 'center-top',
+              timeout: 1500,
+            }
+          );
         });
-      });
-  }, 300);
+    }, 300);
+  } else
+    Notify.success('Choose a cat breed', {
+      position: 'center-top',
+      timeout: 1500,
+    });
 }
