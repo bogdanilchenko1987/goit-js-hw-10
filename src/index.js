@@ -22,7 +22,7 @@ const params = {
 };
 
 function fetchBreeds() {
-  const url = `${BASE_URL}/breeds123`;
+  const url = `${BASE_URL}/breeds`;
   return fetch(url, params).then(response => {
     return response.json();
   });
