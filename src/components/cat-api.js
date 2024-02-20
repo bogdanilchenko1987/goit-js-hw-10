@@ -22,7 +22,7 @@ function fetchBreeds() {
 
 function fetchCatByBreed(breedId) {
   return axios
-    .get(`${BASE_URL}/images11/${breedId}`)
+    .get(`${BASE_URL}/images/${breedId}`)
     .then(response => {
       if (response.status !== 200) {
         // refs.error.hidden = false;
